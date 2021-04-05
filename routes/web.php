@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.home');
 });
+
+Auth::routes();
+Route::post('login','Auth\LoginController@login')->name('login');
+Route::get('/home', 'HomeController@index')->name('home');

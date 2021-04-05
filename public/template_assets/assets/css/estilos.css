@@ -1,0 +1,46 @@
+.navbar-dark{
+    background-color:#ff0000;
+    border:1px solid #000000;
+}
+.sidebar-dark{
+    background-color:#000000;
+}
+.sidebar-dark .nav-sidebar > .nav-item-open > .nav-link:not(.disabled),
+.sidebar-dark .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-light
+    .card[class*="bg-"]:not(.bg-light):not(.bg-white):not(.bg-transparent)
+    .nav-sidebar
+    > .nav-item-open
+    > .nav-link:not(.disabled),
+.sidebar-light
+    .card[class*="bg-"]:not(.bg-light):not(.bg-white):not(.bg-transparent)
+    .nav-sidebar
+    > .nav-item
+    > .nav-link.active {
+    background-color:rgba(255, 255, 255, 0.15); ;
+    color: #fff;
+}
+.sidebar-light .nav-sidebar .nav-link:not(.disabled):hover {
+    color: #ffffff;
+    background-color: #f5f5f5;
+}
+.sidebar-light
+    .sidebar-mobile-toggler[class*="bg-"]:not(.bg-white):not(.bg-light):not(.bg-transparent)
+    a:hover {
+    color: #fff;
+    background-color: transparent;
+}
+.sidebar-light .nav-tabs .nav-link:hover {
+    color: #ffffff;
+}
+.sidebar-dark .nav-sidebar .nav-link:not(.disabled):hover,
+.sidebar-light
+    .card[class*="bg-"]:not(.bg-light):not(.bg-white):not(.bg-transparent)
+    .nav-sidebar
+    .nav-link:not(.disabled):hover {
+    color: #fff;
+    background-color: rgba(213, 232, 243, 0.15);
+}
+.sidebar-dark .sidebar-mobile-toggler:not([class*="bg-"]) {
+    background-color: #ff0000;
+}

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Supervisor;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -25,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,4 +39,37 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function username(){
+        return 'usuario';
+    }
+    public function handle($request, Closure $next, $guard = null)
+    {
+        if (Auth::guard($guard)->check()) {
+            return redirect('/home');
+        }
+
+        return $next($request);
+    }
+    public function login(Request $request){
+        // $credentials =$request->only('usuario','password');
+
+        // $credentials=$this->validate(request(),[
+        //     'usuario'=>'required|string',
+        //     'password'=>'required|string'
+        // ]);
+        $credentials=$request->validate([
+            'usuario'=> 'required|string',
+            'password' => 'required|string',
+        ]);
+        $supervisor=new Supervisor();
+        $supervisor->usuario=$credentials['usuario'];
+        Auth::login($supervisor);
+        if($credentials){
+            $request->session()->regenerate();
+            $request->session()->put('authenticated', time());
+            return redirect('home')->header('Cache-Control', 'no-store, no-cache, must-revalidate');;
+        }
+        return redirect('login');
+    }
+
 }
