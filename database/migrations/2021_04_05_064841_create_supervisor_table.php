@@ -17,6 +17,7 @@ class CreateSupervisorTable extends Migration
             $table->increments('supervisor_id');
             $table->string('usuario')->unique();
             $table->string('nombres');
+            $table->string('password');
         });
     }
 

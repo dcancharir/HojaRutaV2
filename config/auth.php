@@ -93,7 +93,7 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'supervisor' => [
             'provider' => 'supervisor',
             'table' => 'password_resets',
             'expire' => 60,

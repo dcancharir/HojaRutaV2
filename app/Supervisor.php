@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class Supervisor extends Authenticatable
 {
@@ -19,7 +20,12 @@ class Supervisor extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'usuario', 'nombres',
+        'supervisor_id',
+        'usuario',
+        'nombres'
+    ];
+    protected $hidden = [
+        'password'
     ];
     public $timestamps = false;
 }

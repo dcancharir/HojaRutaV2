@@ -74,7 +74,7 @@
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"><i class="icon-cog5"></i> Configuracion</a> -->
 						<!-- <a href="#" id="btnCerrarSesion" class="dropdown-item"><i class="icon-switch2"></i> Salir</a> -->
-						<form action="" method="POST">
+						<form action="{{route('logout')}}" method="POST">
 							{{csrf_field()}}
 							<button class="dropdown-item"><i class="icon-switch2"></i>Cerrar Sesion</button>
 						</form>
