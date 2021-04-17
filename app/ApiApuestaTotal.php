@@ -13,7 +13,7 @@ class ApiApuestaTotal extends Model
         $curl = curl_init();
         curl_setopt_array($curl,
             array(
-                CURLOPT_URL => "http://127.0.0.1:8000/api/v1/auth/acceso",
+                CURLOPT_URL => "127.0.0.1:8000/api/v1/auth/acceso",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_POSTFIELDS =>
                     "usuario=" . $Usuario . "&password=" . $password,
@@ -21,7 +21,7 @@ class ApiApuestaTotal extends Model
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => "POST",
                 CURLOPT_HTTPHEADER => array(
-                    "Accept: application/json",
+                    "ContentType: application/json",
                 ),
             ));
         $response = curl_exec($curl);
@@ -33,7 +33,7 @@ class ApiApuestaTotal extends Model
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://127.0.0.1:8000/api/v1/tienda/supervisor",
+            CURLOPT_URL => "http://supervisores.api:8080/api/v1/tienda/supervisor",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -41,6 +41,23 @@ class ApiApuestaTotal extends Model
             CURLOPT_HTTPHEADER => array(
                 "Accept: application/json",
                 "Authorization: Bearer " . $api_key
+            ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        return $response;
+    }
+    public function listarDataRutasAPI(){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://supervisores.api:8080/api/v1/dataHojaRuta",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Accept: application/json",
             ),
         ));
         $response = curl_exec($curl);

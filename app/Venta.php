@@ -16,10 +16,14 @@ class Venta extends Model
      * @var array
      */
     protected $fillable = [
-        'venta_id', 
+        'venta_id',
         'fecha',
         'tienda_id',
         'monto',
         'moneda',
     ];
+    public $timestamps = false;
+    public function tienda(){
+        return $this->belongsTo("App\Tienda",'tienda_id');
+    }
 }

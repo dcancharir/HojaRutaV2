@@ -16,7 +16,7 @@ class Tienda extends Model
      * @var array
      */
     protected $fillable = [
-        'tienda_id', 
+        'tienda_id',
         'cc',
         'correo_jop',
         'correo_sop',
@@ -27,6 +27,11 @@ class Tienda extends Model
         'frecuencia_semanal',
         'estado',
         'direccion',
-        'nro_visitas_semana'
+        'nro_visitas_semana',
+        'razon_social_id'
     ];
+    public $timestamps = false;
+    public function ventas(){
+        return $this->hasMany("App\Venta",'tienda_id');
+    }
 }

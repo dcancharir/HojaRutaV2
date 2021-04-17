@@ -20,7 +20,7 @@ class CreateDetalleRutaTable extends Migration
             $table->integer('tienda_id');
             $table->integer('visita_id')->nullable();
             $table->integer('tipo_detalle');
-            $table->string('observacion');
+            $table->string('observacion')->nullable();
         });
     }
 

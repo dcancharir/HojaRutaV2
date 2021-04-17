@@ -16,7 +16,7 @@ class DetalleRuta extends Model
      * @var array
      */
     protected $fillable = [
-        'detalle_ruta_id', 
+        'detalle_ruta_id',
         'ruta_id',
         'orden',
         'tienda_id',
@@ -24,4 +24,14 @@ class DetalleRuta extends Model
         'tipo_detalle',
         'observacion'
     ];
+    public $timestamps = false;
+    public function tienda(){
+        return $this->belongsTo('App\Tienda','tienda_id');
+    }
+    public function ruta(){
+        return $this->belongsTo('App\Ruta','ruta_id');
+    }
+    public function visita(){
+        return $this->belongsTo('App\Visita','visita_id');
+    }
 }

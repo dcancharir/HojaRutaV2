@@ -16,9 +16,10 @@ class Pregunta extends Model
      * @var array
      */
     protected $fillable = [
-        'pregunta_id', 
+        'pregunta_id',
         'titulo',
         'tipo',
         'estado',
     ];
+    public $timestamps = false;
 }

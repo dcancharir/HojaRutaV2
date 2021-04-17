@@ -15,17 +15,18 @@ class CreateTiendaTable extends Migration
     {
         Schema::create('tienda', function (Blueprint $table) {
             $table->increments('tienda_id');
-            $table->string('cc');
-            $table->string('correo_jop');
-            $table->string('correo_sop');
-            $table->string('nombres');
+            $table->string('cc')->nullable();
+            $table->string('correo_jop')->nullable();
+            $table->string('correo_sop')->nullable();
+            $table->string('nombres')->nullable();
             $table->integer('supervisor_id');
-            $table->string('latitud');
-            $table->string('longitud');
+            $table->string('latitud')->nullable();
+            $table->string('longitud')->nullable();
             $table->integer('frecuencia_semanal');
             $table->integer('estado');
-            $table->string('direccion');
+            $table->string('direccion')->nullable();
             $table->integer('nro_visitas_semana');
+            $table->integer('razon_social_id')->nullable();
         });
     }
 

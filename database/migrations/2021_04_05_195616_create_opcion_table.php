@@ -15,7 +15,7 @@ class CreateOpcionTable extends Migration
     {
         Schema::create('opcion', function (Blueprint $table) {
             $table->increments('opcion_id');
-            $table->integer('opcion');
+            $table->string('opcion');
             $table->integer('estado');
         });
     }

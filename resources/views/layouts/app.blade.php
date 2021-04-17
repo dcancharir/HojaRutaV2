@@ -17,19 +17,23 @@
 	<link href="{{asset('template_assets/assets/css/layout.min.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{asset('template_assets/assets/css/components.min.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{asset('template_assets/assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+    <link href="{{asset('template_assets/assets/css/jquery-confirm.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('template_assets/assets/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('template_assets/assets/css/estilos.css')}}" rel="stylesheet" type="text/css">
+
+    <script src="{{asset('template_assets/global_assets/js/main/jquery.min.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs0Hfar36tnZyuPv5AkXPu4EFO40FUJAE"></script>
 	<!-- /global stylesheets -->
 	@stack('styles')
 </head>
 
-<body>
+<body class="navbar-top">
 	<input type="hidden" id="PathProyecto" value="{{Request::root()}}">
 	<!-- Main navbar -->
-	<div class="navbar navbar-expand-md navbar-dark">
+	<div class="navbar navbar-expand-md navbar-dark fixed-top">
 		<div class="navbar-brand">
 			{{--<span>Sistema<em>Hoja de Ruta</em></span>--}}
-			<a href="" class="d-inline-block">
+			<a href="/" class="d-inline-block">
 				<img src="{{asset('template_assets/global_assets/images/logo_light.png')}}" alt="">
 			</a>
 		</div>
@@ -61,8 +65,8 @@
 					<a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
 						<img src="{{asset('template_assets/global_assets/images/demo/users/user.jpg')}}" class="rounded-circle mr-2" height="34" alt="">
 						@if(request()->session()->has('supervisor_id'))
-						<span>{{request()->session()->get('supervisor_nombre')}}</span>
-						<input type="hidden" id="user_id" value="{{ request()->session()->get('supervisor_id')}}">
+						<span><strong>{{auth()->user()->usuario}}</strong></span>
+						<!-- <input type="hidden" id="user_id" value="{{ request()->session()->get('supervisor_id')}}"> -->
 						@else
 						<span><strong>Invitado</strong></span>
 						@endif
@@ -118,7 +122,7 @@
 							</div>
 
 							<div class="media-body">
-								<div class="media-title font-weight-semibold">{{request()->session()->get('supervisor_nombre')}}</div>
+								<div class="media-title font-weight-semibold">{{auth()->user()->nombres}}</div>
 								<div class="font-size-xs opacity-50">
 									<i class="icon-pin font-size-sm"></i> &nbsp; <span id="address"></span>
 								</div>
@@ -140,7 +144,7 @@
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menu</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<a href="" class="nav-link active">
+							<a href="/" class="nav-link active">
 								<i class="icon-home4"></i>
 								<span>
 									Inicio
@@ -149,12 +153,17 @@
 						</li>
 						<li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Menus</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-							<li class="nav-item"><a href="" class="nav-link">Tiendas</a></li>
-							<li class="nav-item"><a href="" class="nav-link">Rutas</a></li>
-							<li class="nav-item"><a href="" class="nav-link">Visitas</a></li>
-							<li class="nav-item"><a href="" class="nav-link">Efectividad</a></li>
+							<ul class="nav nav-group-sub" data-submenu-title="Menus">
+                                <li class="nav-item"><a href="{{route('Tienda')}}" class="nav-link">Tiendas</a></li>
+                                <li class="nav-item"><a href="{{route('Ruta')}}" class="nav-link">Hist. de Rutas</a></li>
+                                <li class="nav-item"><a href="{{route('Visita')}}" class="nav-link">Visitas</a></li>
+                                <li class="nav-item"><a href="" class="nav-link">Efectividad</a></li>
+							</ul>
+						</li>
+                        <li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Admin</span></a>
+							<ul class="nav nav-group-sub" data-submenu-title="Admin">
+							    <li class="nav-item"><a href="{{route('AdminTienda')}}" class="nav-link">Tiendas</a></li>
 							</ul>
 						</li>
 						<!-- /main -->
@@ -200,7 +209,7 @@
 	<!-- /page content -->
 
 	<!-- Core JS files -->
-	<script src="{{asset('template_assets/global_assets/js/main/jquery.min.js')}}"></script>
+
 	<script src="{{asset('template_assets/global_assets/js/main/bootstrap.bundle.min.js')}}"></script>
 	<script src="{{asset('template_assets/global_assets/js/plugins/loaders/blockui.min.js')}}"></script>
 	<!-- /core JS files -->
@@ -209,6 +218,7 @@
 	<script src="{{asset('template_assets/global_assets/js/plugins/visualization/d3/d3.min.js')}}"></script>
 	<script src="{{asset('template_assets/global_assets/js/plugins/visualization/d3/d3_tooltip.js')}}"></script>
 	<script src="{{asset('template_assets/global_assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
+    <script src="{{asset('template_assets/global_assets/js/plugins/forms/selects/select2.min.js')}}"></script>
 	<script src="{{asset('template_assets/global_assets/js/plugins/forms/selects/bootstrap_multiselect.js')}}"></script>
 	<script src="{{asset('template_assets/global_assets/js/plugins/forms/styling/uniform.min.js')}}"></script>
 	<script src="{{asset('template_assets/global_assets/js/plugins/ui/moment/moment.min.js')}}"></script>
@@ -216,12 +226,13 @@
 	<script src="{{asset('template_assets/global_assets/js/plugins/notifications/noty.min.js')}}"></script>
 	<script src="{{asset('template_assets/global_assets/js/plugins/tables/datatables/datatables.min.js')}}"></script>
 	<script src="{{asset('template_assets/global_assets/js/plugins/forms/validation/validate.min.js')}}"></script>
-	<script src="{{asset('template_assets/global_assets/js/plugins/visualization/echarts/echarts.min.js')}}"></script>
+    <script src="{{asset('template_assets/global_assets/js/plugins/visualization/echarts/echarts.min.js')}}"></script>
+	<script src="{{asset('template_assets/global_assets/js/plugins/pickers/bootstrap-datetimepicker.min.js')}}"></script>
+	<script src="{{asset('template_assets/assets/js/jquery-confirm.js')}}"></script>
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
 	<script src="{{asset('template_assets/assets/js/app.js')}}"></script>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-	<!-- <script src="{{asset('template_assets/global_assets/js/demo_pages/charts/echarts/lines.js')}}"></script> -->
-
-	<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <script src="{{asset('template_assets/generalTemplate.js')}}"></script>
+    <script src="{{asset('template_assets/assets/js/geolocalizacion.js')}}"></script>
 
 	@stack('js')
 </body>

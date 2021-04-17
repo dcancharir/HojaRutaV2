@@ -16,7 +16,7 @@ class Ruta extends Model
      * @var array
      */
     protected $fillable = [
-        'ruta_id', 
+        'ruta_id',
         'supervisor_id',
         'fecha',
         'estado_completo',
@@ -24,4 +24,8 @@ class Ruta extends Model
         'tiendas_visitadas',
         'tipo_ruta'
     ];
+    public $timestamps = false;
+    public function detalles_ruta(){
+        return $this->hasMany('App\DetalleRuta','ruta_id');
+    }
 }

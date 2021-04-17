@@ -17,7 +17,8 @@ class Opcion extends Model
      */
     protected $fillable = [
         'opcion_id',
-        'opcion', 
+        'opcion',
         'estado',
     ];
+    public $timestamps = false;
 }

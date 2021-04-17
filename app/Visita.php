@@ -16,7 +16,7 @@ class Visita extends Model
      * @var array
      */
     protected $fillable = [
-        'visita_id', 
+        'visita_id',
         'fecha_visita',
         'latitud',
         'longitud',
@@ -27,6 +27,10 @@ class Visita extends Model
         'supervisor_id'
     ];
     public function respuestas(){
-        return $this->hasMany('App\Visita','visita_id');
+        return $this->hasMany('App\Respuesta','visita_id');
     }
+    public function detalle_ruta(){
+        return $this->hasOne('App\DetalleRuta','visita_id');
+    }
+    public $timestamps = false;
 }

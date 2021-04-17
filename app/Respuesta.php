@@ -17,11 +17,18 @@ class Respuesta extends Model
      */
     protected $fillable = [
         'respuesta_id',
-        'pregunta_id', 
+        'pregunta_id',
         'opcion_id',
         'observacion',
         'visita_id',
         'tipo',
         'estado'
     ];
+    public function pregunta(){
+        return $this->belongsTo('App\Pregunta','pregunta_id');
+    }
+    public function opcion(){
+        return $this->belongsTo('App\Opcion','opcion_id');
+    }
+    public $timestamps = false;
 }

@@ -22,10 +22,14 @@ class Supervisor extends Authenticatable
     protected $fillable = [
         'supervisor_id',
         'usuario',
-        'nombres'
+        'nombres',
+        'estado'
     ];
     protected $hidden = [
         'password'
     ];
     public $timestamps = false;
+    public function tiendas(){
+        return $this->hasMany("App\Tienda",'supervisor_id');
+    }
 }

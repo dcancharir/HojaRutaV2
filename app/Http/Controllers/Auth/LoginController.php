@@ -52,7 +52,7 @@ class LoginController extends Controller
         return $next($request);
     }
     public function login(Request $request){
-        $request->session()->flush(); 
+        $request->session()->flush();
         $request->session()->regenerate();
 
         $credentials=$this->validate(request(),[
@@ -64,42 +64,49 @@ class LoginController extends Controller
         $respuesta_api = $apiApuesta->ValidarLoginTokenApi($credentials['usuario'], $credentials['password']);
         $respuesta_api = (string)$respuesta_api;
         $respuesta = json_decode($respuesta_api,true);
-        if($respuesta['success']){
-            request()->session()->put(['tokenApuesta'=>$respuesta["token"]]);
-            $supervisor=Supervisor::where('usuario',$credentials['usuario'])->first();
-            if($supervisor){
-                $supervisor->password=bcrypt($credentials['password']);
-                $supervisor=$supervisor->save();
-                if(Auth::attempt($credentials)){
-                    request()->session()->put(['supervisor_id'=>$supervisor->supervisor_id]);
+        if($respuesta){
+            if($respuesta['success']){
+                request()->session()->put(['tokenApuesta'=>$respuesta["token"]]);
+                $supervisor=Supervisor::where('usuario',$credentials['usuario'])->first();
+                if($supervisor){
+                    $supervisor->password=bcrypt($credentials['password']);
+                    $supervisor->save();
+                    if(Auth::attempt($credentials)){
+                        request()->session()->put(['supervisor_id'=>$supervisor->supervisor_id]);
+                    }
+                    else{
+                        return back()->withErrors(['usuario'=>trans('auth.failed')])
+                                ->withInput(request(['usuario']));
+                    }
                 }
                 else{
-                    return back()->withErrors(['usuario'=>trans('auth.failed')])
-                            ->withInput(request(['usuario']));
+                    $usuarioAPI=$respuesta['user'];
+                    $supervisor=new Supervisor();
+                    $supervisor->usuario=$credentials['usuario'];
+                    $supervisor->password=bcrypt($credentials['password']);
+                    $supervisor->nombres=$usuarioAPI["nombres"]." ".$usuarioAPI["apellidos"];
+                    $supervisor->estado=1;
+                    $supervisor->save();
+                    Auth::attempt($credentials);
+                    $user=auth()->user();
+                    request()->session()->put(['supervisor_id'=>$user->supervisor_id]);
                 }
+                return redirect()->intended('/');
             }
             else{
-                $usuarioAPI=$respuesta['user'];
-                $supervisor=new Supervisor();
-                $supervisor->usuario=$credentials['usuario'];
-                $supervisor->password=bcrypt($credentials['password']);
-                $supervisor->nombres=$usuarioAPI["nombres"]." ".$usuarioAPI["apellidos"];
-                $supervisor=$supervisor->save();
-                Auth::attempt($credentials);
-                $user=auth()->user();
-                request()->session()->put(['supervisor_id'=>$user->supervisor_id]);
+                return back()->withErrors(['usuario'=>trans('auth.failed')])
+                ->withInput(request(['usuario']));
             }
-            return redirect()->intended('/');
         }
         else{
             return back()->withErrors(['usuario'=>trans('auth.failed')])
             ->withInput(request(['usuario']));
         }
     }
-    public function logout(Request $request) 
-    { 
-        $request->session()->flush(); 
-        $request->session()->regenerate(); 
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        $request->session()->regenerate();
         return redirect('/');
     }
 }

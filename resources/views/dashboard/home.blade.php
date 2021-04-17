@@ -5,103 +5,171 @@
 <div class="page-header page-header-light">
 	<div class="page-header-content header-elements-md-inline">
 		<div class="page-title d-flex">
-			<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Ruta</h4>
+        <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - Dashboard</h4>
 			<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
-
 		</div>
 
 	</div>
-<!--
-	<div class="container">
-	<p><button class="mylocation">Show my location</button></p>
-	<div id="out"></div>
-	</div> -->
 
-	<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-		<div class="d-flex">
-			<div class="breadcrumb">
-				<a href="#" class="breadcrumb-item">
-					<i class="icon-home2 mr-2"></i> Seleccione Ruta
-				</a>
-			</div>
-		</div>
-
-	</div>
 </div>
 <div class="content">
-	<div class="row">
-		<div class="col-lg-4">
-							<div class="card card-body border-top-primary">
-								<div class="text-center">
-									<h6 class="m-0 font-weight-semibold">Montos de Venta</h6>
-			                        <button type="button" class="btn bg-success-400 btn-float"><i class="icon-spinner4 spinner"></i></button>
-			                        <button type="button" class="btn btn-danger btn-float ruta" data-ruta="1" data-toggle="modal" data-target="#modal_default"><i class="icon-air icon-2x"></i></button>
-			                        <button type="button" class="btn bg-indigo-400 btn-float"><i class="icon-spinner4 spinner"></i></button>
-		                        </div>
-							</div>
-		</div>
+    <!-- Dashboard content -->
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Marketing campaigns -->
+            <div class="card">
+                <div class="card-body d-md-flex align-items-md-center justify-content-md-between flex-md-wrap">
+                    <div class="d-flex align-items-center mb-3 mb-md-0">
+                    <a href="#" class="btn bg-transparent border-warning-400 text-warning-400 rounded-round border-2 btn-icon">
+                            <i class="icon-watch"></i>
+                        </a>
+                        <div class="ml-3">
+                            <h5 class="font-weight-semibold mb-0"><span id="reloj">16, 10:00 am</span></h5>
+                            <span class="badge badge-mark border-warning mr-1"></span> <span class="font-weight-semibold mb-0">Hora</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3 mb-md-0">
+                        <a href="#" class="btn bg-transparent border-primary-400 text-primary-400 rounded-round border-2 btn-icon">
+                            <i class="icon-trophy3"></i>
+                        </a>
+                        <div class="ml-3">
+                            <h5 class="font-weight-semibold mb-0"><span id="totalTiendas">1</span></h5>
+                            <span class="font-weight-semibold mb-0">Total Tiendas</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3 mb-md-0">
+                        <a href="#" class="btn bg-transparent border-success-400 text-success-400 rounded-round border-2 btn-icon">
+                            <i class="icon-checkmark3"></i>
+                        </a>
+                        <div class="ml-3">
+                            <h5 class="font-weight-semibold mb-0"><span id="totalVisitadas">1</span></h5>
+                            <span class="font-weight-semibold mb-0">Visitadas</span>
+                        </div>
+                    </div>
 
-		<div class="col-lg-4">
-							<div class="card card-body border-top-primary">
-								<div class="text-center">
-									<h6 class="m-0 font-weight-semibold">Ultimas Visitas</h6>
-			                        <button type="button" class="btn bg-success-400 btn-float"><i class="icon-spinner4 spinner"></i></button>
-			                        <button type="button" class="btn btn-info btn-float ruta" data-ruta="2" data-toggle="modal" data-target="#modal_default"><i class="icon-air icon-2x"></i></button>
-			                        <button type="button" class="btn bg-indigo-400 btn-float"><i class="icon-spinner4 spinner"></i></button>
-		                        </div>
-							</div>
-		</div>
+                    <div class="d-flex align-items-center mb-3 mb-md-0">
+                        <a href="#" class="btn bg-transparent border-danger-400 text-danger-400 rounded-round border-2 btn-icon">
+                            <i class="icon-cross2"></i>
+                        </a>
+                        <div class="ml-3">
+                            <h5 class="font-weight-semibold mb-0"><span id="totalPendientes">1</span></h5>
+                            <span class="font-weight-semibold mb-0">Pendientes</span>
+                        </div>
+                    </div>
 
-		<div class="col-lg-4">
-							<div class="card card-body border-top-primary">
-								<div class="text-center">
-									<h6 class="m-0 font-weight-semibold">Frecuencia Semanal</h6>
-			                        <button type="button" class="btn bg-success-400 btn-float"><i class="icon-spinner4 spinner"></i></button>
-			                        <button type="button" class="btn btn-success btn-float ruta" data-ruta="3" data-toggle="modal" data-target="#modal_default"><i class="icon-air icon-2x"></i></button>
-			                        <button type="button" class="btn bg-indigo-400 btn-float"><i class="icon-spinner4 spinner"></i></button>
-								</div>
-							</div>
-		</div>
-	</div>
+                </div>
+                <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                    <div class="d-flex">
+                        <div class="breadcrumb">
+                            <a href="#" class="breadcrumb-item font-weight-semibold">
+                                <i class="icon-home2 mr-2"></i> Tiendas a visitar hoy - {{ date('Y-m-d') }}
+                            </a>
+                        </div>
+                    </div>
 
-	<div class="card">
-		<div class="card-body">
-			<table class="table datatable-rutas table-hover" id="table_rutas">
-				<tbody><tr><td colspan="6"><div class="alert alert-warning alert-dismissible text-center">Cargando...</span></td></tr></tbody>
-			</table>
-		</div>
-	</div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table text-nowrap table-sm table-striped" id="tableDetalleRuta">
+                        <thead>
+                            <tr>
+                                <th>Orden</th>
+                                <th>Tienda</th>
+                                <th>Dirección</th>
+                                <th>Tipo</th>
+                                <th>Observación</th>
+                                <th >Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td><span class="font-weight-semibold mb-0">Mintlime</span></td>
+                                <td><span class="">Direccion Tienda</td>
+                                <td><h6 class="text-success-600 badge bg-blue">Sistema</h6></td>
+                                <td><span class="text-muted">Active</span></td>
+                                <td>
+                                    <a href="javascript:void(0);" class="btn btn-sm bg-teal-400">Visitar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /marketing campaigns -->
+            <!-- Maps section -->
+            <div class="card">
+                <div id="map" style="height: 50vh;">
+                </div>
+            </div>
+            <!-- /Maps section -->
+
+        </div>
+    </div>
+				<!-- /dashboard content -->
 </div>
-<!-- Basic modal -->
-<div id="modal_default" class="modal fade" tabindex="-1">
-					<div class="modal-dialog">
+
+<!-- Modal Visita -->
+<div id="modalVisita" class="modal fade" tabindex="-1">
+					<div class="modal-dialog modal-dialog-scrollable">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Tipo de Ruta</h5>
+								<h3 class="modal-title">Agregar Visita a : <span id="nombreTienda"></span></h3>
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 							</div>
 
 							<div class="modal-body">
-								<table id="Ruta-table" class="table table-bordered table-condensed table-hover">
-									<thead>
-										<tr>
-											<th>Id</span></th>
-											<th>Orden</th>
-											<th>Tienda</th>
-										</tr>
-									</thead>
-									<tbody id="tbody_Ruta"></tbody>
-								</table>
+							<input type="hidden" name="ruta_id" id="ruta_id" />
+							<input type="hidden" name="detalle_ruta_id" id="detalle_ruta_id" />
+							<input type="hidden" name="nombre_tienda" id="nombre_tienda" />
+							<input type="hidden" name="distancia" id="distancia" />
+							<form id="frmVisitaForm" class="" method="post">
+								<div id="seccionPreguntas">
+								<h3>Responsabilidad del Cajero</h3>
+								<div id="responsabilidadCajero">
+
+								</div>
+								<h3>Responsabilidad del Supervisor</h3>
+								<div id="responsabilidadSupervisor">
+
+								</div>
+								<!-- <div class="form-group row"><label class="col-md-12 font-weight-semibold">Pregunta 1</label>
+		                        	<div class="col-md-4">
+			                            <select class="form-control">
+			                                <option value="opt1">Seleccione</option>
+			                                <option value="opt2">Si</option>
+			                                <option value="opt3">No</option>
+			                                <option value="opt4">No Aplica</option>
+			                            </select>
+									</div>
+									<div class="col-md-4">
+										<input type="button" data-id="1" class="btn btn-primary btn_observacion" value="Agregar Observacion"/>
+									</div>
+									<hr>
+									<div class="col-md-12" style="display:none" id="observacion1">
+										<input type="text" placeholder="Observacion" class="form-control" name="observacion1">
+									</div>
+								</div> -->
+								</div>
+								</form>
+
 							</div>
 							<div class="modal-footer">
-							<button id="AceparRuta" class="btn btn-danger">Selecciona Ruta</button>
-							<button id="Cerrar" class="btn btn-primary">Cerrar</button>
+							<button type="button" class="btn btn-primary" id="btnVisitar">Visitar</button>
+							<button type="button" class="btn btn-danger" id="btnCancelarVisita">Cancelar</button>
 							</div>
-
 
 						</div>
 					</div>
-</div>
+				</div>
 <!-- /basic modal -->
-@endsection
+@stop
+
+@push('js')
+<script>
+	var distancia_aceptada={!! ENV('DISTANCIA_ACEPTADA','20') !!};
+</script>
+<script src="{{asset('/template_assets/viewjs/Home/Home.js')}}"></script>
+@endpush
 
