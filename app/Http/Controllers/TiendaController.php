@@ -63,4 +63,29 @@ class TiendaController extends Controller
             'mensaje' => $mensaje
         ]);
     }
+    public function EditarFrecuenciaSemanalTiendaJson(Request $request){
+        $mensaje="No se pudo editar el registro";
+        $respuesta=false;
+        try{
+            $tienda_id=$request["tienda_id"];
+            $frecuencia_semanal=$request["frecuencia_semanal"];
+            $tienda=Tienda::find($tienda_id);
+            if($tienda){
+                $tienda->frecuencia_semanal=$frecuencia_semanal;
+                $tienda->save();
+                $mensaje="Registro Editado";
+                $respuesta=true;
+            }
+        }catch(Exception $ex){
+
+        }catch (ModelNotFoundException $ex) {
+
+        }catch (QueryException $ex) {
+
+        }
+        return response()->json([
+            'respuesta'=>$respuesta,
+            'mensaje' => $mensaje
+        ]);
+    }
 }

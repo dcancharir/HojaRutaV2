@@ -3,6 +3,7 @@ let AdminTiendaVistaJS = function() {
     //
     // Setup module components
     //
+    let arrayFrecuenciaSemanal=[]
     let _inicio=function() {
         let url = basePath + "ListarTiendasJson";
         $.ajax({
@@ -17,7 +18,19 @@ let AdminTiendaVistaJS = function() {
             },
             success: function (response) {
                 if(response.respuesta){
-                    let columns=columnasDatatable(response.data)
+                    messageResponse({
+                        message: response.mensaje,
+                        type: "success"
+                    });
+                    arrayFrecuenciaSemanal.length=0;
+                    let data=response.data;
+                    $.each(data,function(i,v){
+                        arrayFrecuenciaSemanal.push({
+                            tienda_id:v.tienda_id,
+                            frecuencia_semanal:v.frecuencia_semanal
+                        })
+                    })
+                    let columns=columnasDatatable(data)
                     objetodatatable = $(".datatable-tienda").DataTable({
                         "bDestroy": true,
                         "bSort": false,
@@ -35,6 +48,12 @@ let AdminTiendaVistaJS = function() {
                         },
                         "drawCallback": function (settings) {
                         }
+                    });
+                }
+                else{
+                    messageResponse({
+                        message: response.mensaje,
+                        type: "error"
                     });
                 }
             },
@@ -85,7 +104,7 @@ let AdminTiendaVistaJS = function() {
                         title: "Frecuencia Semanal",
                         "className":'font-weight-semibold mb-0',
                         "render":function(value, type, oData, meta){
-                            let span=`<select style="width:100%;" class="form-select form-select-sm" aria-label=".form-select-sm example">`;
+                            let span=`<select style="width:100%;" class="browser-default custom-select selectFrecuenciaSemanal select${oData.tienda_id}" data-id="${oData.tienda_id}">`;
                             $.each(dias, function(index,val){
                                 if(val==oData.frecuencia_semanal){
                                     span+=`<option selected="selected" value="${val}">${val}</option>`;
@@ -108,7 +127,66 @@ let AdminTiendaVistaJS = function() {
         return obj
     }
     let _actions=function(){
+        $(document).on('change','.selectFrecuenciaSemanal',function(e){
+            e.preventDefault()
+            let tienda_id=$(this).data('id')
+            let frecuencia_semanal=$(this).val()
+            let dataForm={
+                tienda_id:tienda_id,
+                frecuencia_semanal:frecuencia_semanal
+            }
+            let url = basePath + "EditarFrecuenciaSemanalTiendaJson";
+            let frecuenciaAnterior=arrayFrecuenciaSemanal.filter(x=>x.tienda_id==tienda_id)
 
+            messageConfirmation({
+                title: 'Confirmacion',
+                content: 'Seguro que desea editar el registro?',
+                callBackSAceptarComplete: function() {
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        contentType: "application/json",
+                        data:JSON.stringify(dataForm),
+                        beforeSend: function () {
+                            block_general("body")
+                        },
+                        complete: function () {
+                            unblock("body");
+                        },
+                        success: function (response) {
+                            if(response.respuesta){
+                                messageResponse({
+                                    message: response.mensaje,
+                                    type: "success"
+                                });
+                                arrayFrecuenciaSemanal.map(function(dato){
+                                    if(dato.tienda_id == frecuenciaAnterior[0].tienda_id){
+                                      dato.frecuencia_semanal = frecuencia_semanal;
+                                    }
+                                    return dato;
+                                });
+                            }
+                            else{
+                                messageResponse({
+                                    message: response.mensaje,
+                                    type: "error"
+                                });
+                                $('.select'+tienda_id).val(frecuenciaAnterior[0].frecuencia_semanal);
+                            }
+                        },
+                        error: function (xmlHttpRequest, textStatus, errorThrow) {
+                            console.log("errorrrrrrrr");
+                            $('.select'+tienda_id).val(frecuenciaAnterior[0].frecuencia_semanal);
+                        }
+                    });
+                },
+                callBackSCCerraromplete:function(){
+                    $('.select'+tienda_id).val(frecuenciaAnterior[0].frecuencia_semanal);
+                }
+            })
+
+
+        })
     }
      return {
         init: function() {

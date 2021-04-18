@@ -49,6 +49,7 @@ Route::get('VentaExportarExcel/{tienda_id}','VentaController@VentaExportarExcel'
 Route::get('Ruta','RutaController@RutaVista')->name('Ruta');
 Route::post('RutaDiariaJson','RutaController@listarRutaDiaporUsuarioJson');
 Route::post('RutaListarporUsuarioJson','RutaController@listarRutasporUSuarioJson');
+Route::post('ReporteEfectividadJson','RutaController@ReporteEfectividadJson');
 
 //Visitas, Preguntas y Opciones a responder
 Route::get('Visita','VisitaController@VisitaVista')->name('Visita');
@@ -57,6 +58,7 @@ Route::post('VisitaGuardarJson','VisitaController@VisitaGuardarJson');
 Route::post('listarVisitasporSupervisorJson','VisitaController@listarVisitasporSupervisorJson');
 Route::post('ObtenerVisitaIdJson','VisitaController@ObtenerVisitaIdJson');
 Route::post('ListarVisitasporTienda','VisitaController@ListarVisitasporTienda');
+Route::get('ReporteEfectividad','VisitaController@ReporteEfectividadVista')->name('ReporteEfectividad');
 
 //Detalle Ruta
 Route::post('listarDetalleRutaporRutaIdJson','DetalleRutaController@listarDetalleRutaporRutaIdJson');
@@ -65,3 +67,4 @@ Route::post('listarDetalleRutaporRutaIdJson','DetalleRutaController@listarDetall
 //Admin
 Route::get('AdminTienda','TiendaController@AdminTiendaVista')->name('AdminTienda');
 Route::post('ListarTiendasJson', 'TiendaController@ListarTiendasJson');
+Route::post('EditarFrecuenciaSemanalTiendaJson','TiendaController@EditarFrecuenciaSemanalTiendaJson');

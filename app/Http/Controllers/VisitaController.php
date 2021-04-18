@@ -23,6 +23,9 @@ class VisitaController extends Controller
     public function VisitaVista(){
         return view('visita.visitavista');
     }
+    public function ReporteEfectividadVista(){
+        return view('visita.reporteefectividadVista');
+    }
     public function ObtenerVisitaIdJson(Request $request){
         $mensaje="No se pudo obtener el registro";
         $respuesta=false;

@@ -144,7 +144,7 @@
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menu</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<a href="/" class="nav-link active">
+							<a href="/home" class="nav-link">
 								<i class="icon-home4"></i>
 								<span>
 									Inicio
@@ -156,8 +156,8 @@
 							<ul class="nav nav-group-sub" data-submenu-title="Menus">
                                 <li class="nav-item"><a href="{{route('Tienda')}}" class="nav-link">Tiendas</a></li>
                                 <li class="nav-item"><a href="{{route('Ruta')}}" class="nav-link">Hist. de Rutas</a></li>
-                                <li class="nav-item"><a href="{{route('Visita')}}" class="nav-link">Visitas</a></li>
-                                <li class="nav-item"><a href="" class="nav-link">Efectividad</a></li>
+                                <li class="nav-item"><a href="{{route('Visita')}}" class="nav-link">Reporte Visitas</a></li>
+                                <li class="nav-item"><a href="{{route('ReporteEfectividad')}}" class="nav-link">Reporte Efectividad</a></li>
 							</ul>
 						</li>
                         <li class="nav-item nav-item-submenu">

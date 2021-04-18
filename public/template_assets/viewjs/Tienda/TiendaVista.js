@@ -9,13 +9,17 @@ let TiendaVistaJS = function() {
             type: "POST",
             contentType: "application/json",
             beforeSend: function () {
-                // $.LoadingOverlay("show");
+                block_general("body")
             },
             complete: function () {
-                // $.LoadingOverlay("hide");
+                unblock("body")
             },
             success: function (response) {
                 if(response.respuesta){
+                    messageResponse({
+                        message: response.mensaje,
+                        type: "success"
+                    });
                     let columns=columnasDatatable(response.data)
                     objetodatatable = $(".datatable-tienda").DataTable({
                         "bDestroy": true,
@@ -34,6 +38,12 @@ let TiendaVistaJS = function() {
                         },
                         "drawCallback": function (settings) {
                         }
+                    });
+                }
+                else{
+                    messageResponse({
+                        message: response.mensaje,
+                        type: "error"
                     });
                 }
             },
@@ -114,29 +124,6 @@ let TiendaVistaJS = function() {
             redirect("Venta/"+tienda_id);
         });
     }
-    // Line chart
-    // let _googleMapBasic = function() {
-    //     if (typeof google == 'undefined') {
-    //         console.warn('Warning - Google Maps library is not loaded.');
-    //         return;
-    //     }
-    //     // Map settings
-    //     function initialize() {
-    //         // Define map element
-    //         let map_basic_element = document.getElementById('map');
-    //         // Optinos
-    //         let mapOptions = {
-    //             zoom: 12,
-    //             center: new google.maps.LatLng(47.496, 19.037)
-    //         };
-    //         // Apply options
-    //         let map = new google.maps.Map(map_basic_element, mapOptions);
-    //     }
-    //     // Load map
-    //     google.maps.event.addDomListener(window, 'load', initialize);
-    // };
-
-
     //
     // Return objects assigned to module
     //
@@ -145,7 +132,6 @@ let TiendaVistaJS = function() {
         init: function() {
             _inicio();
             _actions();
-            // _googleMapBasic();
         }
     }
 }();

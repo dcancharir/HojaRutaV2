@@ -34,17 +34,17 @@ $.ajaxSetup({
 
 //seccion cookies
 function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
+    let d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toGMTString();
+    let expires = "expires=" + d.toGMTString();
     document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
 }
 
 function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
     return "";
@@ -77,7 +77,7 @@ function unblock(block) {
     $(block).unblock();
 }
 function messageResponse(obj) {
-    var defaults = {
+    let defaults = {
         message: null,
         type: null,
         timeOut: 2500,
@@ -86,8 +86,8 @@ function messageResponse(obj) {
         modal: false
     }
 
-    var opciones = $.extend({}, defaults, obj);
-    var theme = null;
+    let opciones = $.extend({}, defaults, obj);
+    let theme = null;
     switch (opciones.type) {
         case 'success':
             theme = ' alert alert-success alert-styled-left p-0';
@@ -122,8 +122,8 @@ function messageResponse(obj) {
 
 $.fn.serializeFormJSON = function () {
 
-    var o = {};
-    var a = this.serializeArray();
+    let o = {};
+    let a = this.serializeArray();
     $.each(a, function () {
         if (o[this.name]) {
             if (!o[this.name].push) {
@@ -137,14 +137,14 @@ $.fn.serializeFormJSON = function () {
     return o;
 }
 function messageConfirmation(obj) {
-    var defaults = {
+    let defaults = {
         title: 'Confirmacion',
         content: '¿Seguro que desea proceder?',
         icon: 'fa fa-warning',
         callBackSAceptarComplete: null,
         callBackSCCerraromplete: null,
     };
-    var opciones = $.extend({}, defaults, obj);
+    let opciones = $.extend({}, defaults, obj);
     $.confirm({
         title: opciones.title,
         theme: 'modern',
@@ -188,6 +188,12 @@ $.extend($.fn.dataTable.defaults, {
     }
 });
 
+// Sidebar
+let CURRENT_URL = window.location.href.split('#')[0].split('?')[0];
+let SIDEBAR_MENU = $('.nav-sidebar');
+SIDEBAR_MENU.find('a').filter(function () {
+        return this.href == CURRENT_URL;
+}).addClass('active').parent('li').parent('ul').parent('li').addClass('nav-item-expanded nav-item-open');
 
 
 

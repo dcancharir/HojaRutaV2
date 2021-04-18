@@ -40,7 +40,7 @@ class RutaController extends Controller
         }
         return response()->json(["data"=>$data, "mensaje"=>$mensaje,"respuesta"=>$respuesta]);
     }
-    public function listarRutaDiaporUsuarioJson(){
+    public function ListarRutaDiaporUsuarioJson(){
         $mensaje="No se pudo listar los registros";
         $respuesta=false;
         $data=null;
@@ -72,5 +72,29 @@ class RutaController extends Controller
             'respuesta'=>$respuesta,
             'mensaje' => $mensaje
         ]);
+    }
+    public function ReporteEfectividadJson(Request $request){
+        $data=null;
+        $mensaje="No se pudieron listar los registros";
+        $respuesta=false;
+        try{
+            $fechaInicio=$request["fechaInicio"];
+            $fechaFin=$request["fechaFin"];
+            $supervisor_id=request()->session()->get('supervisor_id');
+            $rutas=Ruta::whereBetween('fecha',[$fechaInicio,$fechaFin])
+                            ->where('supervisor_id',$supervisor_id)
+                            ->orderBy('fecha','desc')
+                            ->get();
+            $data=$rutas;
+            $mensaje="Listando registros";
+            $respuesta=true;
+        }catch(Exception $ex){
+
+        }catch (ModelNotFoundException $ex) {
+
+        }catch (QueryException $ex) {
+
+        }
+        return response()->json(["data"=>$data, "mensaje"=>$mensaje,"respuesta"=>$respuesta]);
     }
 }
