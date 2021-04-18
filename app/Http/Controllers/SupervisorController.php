@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 
 class SupervisorController extends Controller
 {
-    public function ListarSupervisores(){
+    public function AdminSupervisoresVista(){
+        return view('admin.adminsupervisoresvista');
+    }
+    public function ListarSupervisoresJson(){
         $mensaje="No se pudo listar los registros";
         $respuesta=false;
         $data=null;
         try{
             $supervisores=Supervisor::all();
-            $data=supervisores;
+            $data=$supervisores;
             $mensaje="Listando Registros";
             $respuesta=true;
         }catch(Exception $ex){

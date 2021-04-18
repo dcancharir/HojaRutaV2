@@ -34,7 +34,7 @@ Route::post('login','Auth\LoginController@login')->name('login');
 Route::get('home', 'HomeController@index')->name('home');
 
 //Supervisores
-Route::get('supervisores', 'SupervisorController@listarSupervisores');
+Route::get('supervisores', 'SupervisorController@listarSupervisoresJson');
 
 //Tiendas
 Route::get('Tienda', 'TiendaController@TiendaVista')->name('Tienda');
@@ -68,3 +68,6 @@ Route::post('listarDetalleRutaporRutaIdJson','DetalleRutaController@listarDetall
 Route::get('AdminTienda','TiendaController@AdminTiendaVista')->name('AdminTienda');
 Route::post('ListarTiendasJson', 'TiendaController@ListarTiendasJson');
 Route::post('EditarFrecuenciaSemanalTiendaJson','TiendaController@EditarFrecuenciaSemanalTiendaJson');
+
+Route::get('AdminSupervisores','SupervisorController@AdminSupervisoresVista')->name('AdminSupervisores');
+Route::post('ListarSupervisoresJson', 'SupervisorController@ListarSupervisoresJson');

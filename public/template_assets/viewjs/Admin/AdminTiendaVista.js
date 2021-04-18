@@ -31,7 +31,7 @@ let AdminTiendaVistaJS = function() {
                         })
                     })
                     let columns=columnasDatatable(data)
-                    objetodatatable = $(".datatable-tienda").DataTable({
+                    objetodatatable = $(".datatableTienda").DataTable({
                         "bDestroy": true,
                         "bSort": false,
                         "scrollCollapse": true,

@@ -5,7 +5,7 @@
 <div class="page-header page-header-light">
 	<div class="page-header-content header-elements-md-inline">
 		<div class="page-title d-flex">
-			<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Tienda</h4>
+			<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Supervisores</h4>
 			<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 		</div>
 
@@ -25,7 +25,7 @@
 					<i class="icon-home2 mr-2"></i> Inicio
 				</a>
 				<a href="#" class="breadcrumb-item">
-					Tienda
+					Supervisores
 				</a>
 				<span class="breadcrumb-item active">Listado</span>
 
@@ -64,7 +64,7 @@
 	<!-- Basic datatable -->
 	<div class="card">
 		<div class="card-body">
-			<table class="datatableTienda table table-xs text-nowrap table-hover" style="width:100%">
+			<table class="datatableSupervisores table table-xs text-nowrap table-hover" style="width:100%">
 				<tbody><tr><td colspan="6"><div class="alert alert-warning alert-dismissible text-center">Cargando...</span></td></tr></tbody>
 			</table>
 		</div>
@@ -76,5 +76,5 @@
 @stop
 
 @push('js')
-<script src="{{asset('/template_assets/viewjs/Admin/AdminTiendaVista.js')}}"></script>
+<script src="{{asset('/template_assets/viewjs/Admin/AdminSupervisoresVista.js')}}"></script>
 @endpush
