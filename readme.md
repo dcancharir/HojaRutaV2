@@ -35,7 +35,7 @@ DISTANCIA_ACEPTADA=20000000
 #Usuario Administrador
 USUARIO_ADMINISTRADOR=admin@admin.com
 ```
-Crear usuario el usuario agregado en `USUARIO_ADMINISTRADOR` en tabla supervisores
+Crear el usuario agregado en `USUARIO_ADMINISTRADOR` en tabla supervisores
 
 Ejecutar comando :
 
