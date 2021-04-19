@@ -143,7 +143,9 @@
 
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Menu</div> <i class="icon-menu" title="Main"></i></li>
-						<li class="nav-item">
+
+                        @role('supervisor')
+                        	<li class="nav-item">
 							<a href="/home" class="nav-link">
 								<i class="icon-home4"></i>
 								<span>
@@ -151,7 +153,7 @@
 								</span>
 							</a>
 						</li>
-						<li class="nav-item nav-item-submenu">
+                        <li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Menus</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Menus">
                                 <li class="nav-item"><a href="{{route('Tienda')}}" class="nav-link">Tiendas</a></li>
@@ -160,6 +162,7 @@
                                 <li class="nav-item"><a href="{{route('ReporteEfectividad')}}" class="nav-link">Reporte Efectividad</a></li>
 							</ul>
 						</li>
+                        @else
                         <li class="nav-item nav-item-submenu">
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Admin</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Admin">
@@ -167,6 +170,7 @@
                                 <li class="nav-item"><a href="{{route('AdminSupervisores')}}" class="nav-link">Supervisores</a></li>
 							</ul>
 						</li>
+                        @endrole
 						<!-- /main -->
 
 					</ul>

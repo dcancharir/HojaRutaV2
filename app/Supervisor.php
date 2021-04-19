@@ -7,10 +7,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Traits\HasRoles;
 
 class Supervisor extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
     protected $table = 'supervisor';
     protected $primaryKey ='supervisor_id';
 

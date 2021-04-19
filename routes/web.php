@@ -29,9 +29,12 @@ Route::get('login',function(){
     return view('auth.login');
 });
 
+
 Route::post('logout','Auth\LoginController@logout')->name('logout');
 Route::post('login','Auth\LoginController@login')->name('login');
-Route::get('home', 'HomeController@index')->name('home');
+
+Route::group(["middleware"=>'permiso:supervisor'],function(){
+    Route::get('home', 'HomeController@index')->name('home');
 
 //Supervisores
 Route::get('supervisores', 'SupervisorController@listarSupervisoresJson');
@@ -62,12 +65,19 @@ Route::get('ReporteEfectividad','VisitaController@ReporteEfectividadVista')->nam
 
 //Detalle Ruta
 Route::post('listarDetalleRutaporRutaIdJson','DetalleRutaController@listarDetalleRutaporRutaIdJson');
+});
+
+
 
 
 //Admin
-Route::get('AdminTienda','TiendaController@AdminTiendaVista')->name('AdminTienda');
-Route::post('ListarTiendasJson', 'TiendaController@ListarTiendasJson');
-Route::post('EditarFrecuenciaSemanalTiendaJson','TiendaController@EditarFrecuenciaSemanalTiendaJson');
+Route::group(["middleware"=>'permiso:administrador'],function(){
+    Route::get('AdminTienda','TiendaController@AdminTiendaVista')->name('AdminTienda');
+    Route::post('ListarTiendasJson', 'TiendaController@ListarTiendasJson');
+    Route::post('EditarFrecuenciaSemanalTiendaJson','TiendaController@EditarFrecuenciaSemanalTiendaJson');
 
-Route::get('AdminSupervisores','SupervisorController@AdminSupervisoresVista')->name('AdminSupervisores');
-Route::post('ListarSupervisoresJson', 'SupervisorController@ListarSupervisoresJson');
+    Route::get('AdminSupervisores','SupervisorController@AdminSupervisoresVista')->name('AdminSupervisores');
+    Route::post('ListarSupervisoresJson', 'SupervisorController@ListarSupervisoresJson');
+    Route::post('AsignarRolSupervisorJson','SupervisorController@AsignarRolSupervisorJson');
+});
+
