@@ -4,7 +4,7 @@
 
 <div class="page-header page-header-light">
 	<div class="page-header-content header-elements-md-inline">
-		<div class="page-title d-flex">
+		<div class="page-title d-flex" style="padding-top:10px;padding-bottom:10px;">
         <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - Dashboard</h4>
 			<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 		</div>
@@ -54,6 +54,12 @@
                         <div class="ml-3">
                             <h5 class="font-weight-semibold mb-0"><span id="totalPendientes">1</span></h5>
                             <span class="font-weight-semibold mb-0">Pendientes</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3 mb-md-0">
+
+                        <div class="ml-3">
+                            <a href="javascript:void(0)" class="btn btn-outline-danger" id="btnNuevoDetalleRuta">Nueva Tienda</a>
                         </div>
                     </div>
 
@@ -163,6 +169,47 @@
 						</div>
 					</div>
 				</div>
+<!-- /basic modal -->
+<!-- Basic modal -->
+<div id="modalNuevoDetalleRuta" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-full modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-semibold mb-0">Agregar Nueva Tienda a Visitar</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+
+            <div class="modal-body">
+                <button type="button" class="btn btn-block btn-danger" id="btnGuardarDetalles">Agregar Tiendas</button>
+                <hr>
+                <h6 class="font-weight-semibold">Seleccione las tiendas que desee agregar para la ruta del día y agregue una observación del porqué se estan agregando.</h6>
+                <h6 class="font-weight-semibold">Luego haga click en el boton "Agregar Tiendas"</h6>
+                <hr>
+                <div class="form-group">
+                    <label for="observaciondetalle">Observación</label>
+                    <input type="text" class="form-control" id="observaciondetalle" name="observaciondetalle" placeholder="Observacion">
+                </div>
+                <hr>
+                <h6 class="font-weight-semibold">Tiendas Disponibles</h6>
+                <div class="table-responsive">
+                    <table id="Tiendas-table" class="table table-sm text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">Seleccionar</th>
+                                        <th width="10%">CC</th>
+                                        <th width="40%">Tienda</th>
+                                        <th width="400%">Direccion</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyTiendas"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <!-- /basic modal -->
 @stop
 

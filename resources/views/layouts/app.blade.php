@@ -167,7 +167,8 @@
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Admin</span></a>
 							<ul class="nav nav-group-sub" data-submenu-title="Admin">
 							    <li class="nav-item"><a href="{{route('AdminTienda')}}" class="nav-link">Tiendas</a></li>
-                                <li class="nav-item"><a href="{{route('AdminSupervisores')}}" class="nav-link">Supervisores</a></li>
+                                <li class="nav-item"><a href="{{route('AdminSupervisores')}}" class="nav-link">Usuarios</a></li>
+                                <li class="nav-item"><a href="{{route('AdminRole')}}" class="nav-link">Roles</a></li>
 							</ul>
 						</li>
                         @endrole

@@ -1,6 +1,6 @@
 let VentaVistaJS=function(){
     const tienda_id=$("#txt_tienda_id").val();
-    let _inicio=function(){
+    let inicio=function(){
         let url = basePath + "VentaListarJson";
         let dataForm={
             tienda_id:tienda_id,
@@ -96,7 +96,7 @@ let VentaVistaJS=function(){
         }
         return obj
     }
-    let _componentes=function(){
+    let acciones=function(){
         $(document).on("click", "#btnPdf", function() {
             window.open(basePath+ 'VentaExportarPdf/'+tienda_id);
         });
@@ -104,7 +104,7 @@ let VentaVistaJS=function(){
             redirect("VentaExportarExcel/"+tienda_id);
         });
         $(document).on("click", ".btnRecargar", function() {
-            refresh(true);
+            window.location.reload()
         });
 
          $(document).on("click", ".btnRegresar", function() {
@@ -113,8 +113,8 @@ let VentaVistaJS=function(){
     }
     return {
         init:function(){
-            _inicio();
-            _componentes();
+            inicio();
+            acciones();
         }
     }
 }();

@@ -1,11 +1,7 @@
 let AdminSupervisoresVistaJS = function() {
-
-    //
-    // Setup module components
-    //
     let arrayRolesUsuario=[];
     let roles;
-    let _inicio=function() {
+    let inicio=function() {
         let url = basePath + "ListarSupervisoresJson";
         $.ajax({
             url: url,
@@ -140,7 +136,7 @@ let AdminSupervisoresVistaJS = function() {
         }
         return obj
     }
-    let _actions=function(){
+    let acciones=function(){
         $(document).on('change','.selectRol',function(e){
             e.preventDefault()
             let supervisor_id= $(this).data('id')
@@ -212,16 +208,11 @@ let AdminSupervisoresVistaJS = function() {
     }
      return {
         init: function() {
-            _inicio();
-            _actions();
+            inicio();
+            acciones();
         }
     }
 }();
-
-
-// // Initialize module
-// // ------------------------------
-
 document.addEventListener('DOMContentLoaded', function() {
     AdminSupervisoresVistaJS.init();
 });

@@ -4,15 +4,15 @@
 <!-- Page header -->
 <div class="page-header page-header-light">
 	<div class="page-header-content header-elements-md-inline">
-		<div class="page-title d-flex">
+		<div class="page-title d-flex" style="padding-top:0;padding-bottom:0;">
 			<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Visita</h4>
 			<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 		</div>
 
 		<div class="header-elements d-none">
 			<div class="d-flex justify-content-center">
-				<a href="#" class="btn btn-link btn-float text-default btn_recargar">
-					<i class="icon-reset text-primary"></i><span>Recargar</span>
+				<a href="#" class="btn btn-link btn-float text-danger btn_recargar">
+					<i class="icon-reset text-danger"></i><span>Recargar</span>
 				</a>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 					<i class="icon-more"></i>
 				</a>
 		</div>
-		<div class="header-elements d-none">
+		<!-- <div class="header-elements d-none">
 			<div class="breadcrumb justify-content-center">
 				<div class="breadcrumb-elements-item dropdown p-0">
 					<a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
@@ -53,7 +53,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 <!-- /page header -->
@@ -114,6 +114,41 @@
 
 </div>
 <!-- /content area -->
+<!-- Modal Respuestas por Visita -->
+<div id="modalRespuestas" class="modal fade" tabindex="-1">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title">Detalle de Visita a: <span id="nombreTienda"></span></h3>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+
+			<div class="modal-body">
+		    <form id="frmVisitaForm" class="" method="post">
+				<input type="hidden" name="visita_id" id="visita_id" />
+				<div id="seccionPreguntas">
+					<h3>Responsabilidad del Cajero</h3>
+					<div id="responsabilidadCajero">
+
+					</div>
+					<h3>Responsabilidad del Supervisor</h3>
+					<div id="responsabilidadSupervisor">
+
+					</div>
+				</div>
+            </form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-warning" id="btnPdfRespuestas">Pdf</button>
+				<button type="button" class="btn btn-danger" id="btnExcelRespuestas">Excel</button>
+                <button type="button" class="btn btn-outline-danger" id="btnCerrarModal">Cerrar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- /basic modal -->
 @stop
 
 @push('js')

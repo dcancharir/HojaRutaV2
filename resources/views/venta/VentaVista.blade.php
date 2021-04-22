@@ -4,18 +4,18 @@
 <!-- Page header -->
 <div class="page-header page-header-light">
 	<div class="page-header-content header-elements-md-inline">
-		<div class="page-title d-flex">
+		<div class="page-title d-flex" style="padding-top:0;padding-bottom:0;">
 			<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Ventas Tienda</h4>
 			<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 		</div>
 
 		<div class="header-elements d-none">
 			<div class="d-flex justify-content-center">
-				<a href="#" class="btn btn-link btn-float text-default btnRegresar">
-					<i class="icon-arrow-left7 text-primary"></i> <span>Regresar</span>
+				<a href="#" class="btn btn-link btn-float text-danger btnRegresar">
+					<i class="icon-arrow-left7 text-danger"></i> <span>Regresar</span>
 				</a>
-				<a href="#" class="btn btn-link btn-float text-default btnRecargar">
-					<i class="icon-reset text-primary"></i><span>Recargar</span>
+				<a href="#" class="btn btn-link btn-float text-danger btnRecargar">
+					<i class="icon-reset text-danger"></i><span>Recargar</span>
 				</a>
 			</div>
 		</div>

@@ -4,15 +4,20 @@
 <!-- Page header -->
 <div class="page-header page-header-light">
 	<div class="page-header-content header-elements-md-inline">
-		<div class="page-title d-flex">
+		<div class="page-title d-flex" style="padding-top:0;padding-bottom:0;">
 			<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Efectividad</h4>
 			<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 		</div>
 
 		<div class="header-elements d-none">
 			<div class="d-flex justify-content-center">
-				<a href="#" class="btn btn-link btn-float text-default btn_recargar">
-					<i class="icon-reset text-primary"></i><span>Recargar</span>
+				<a href="#" class="btn btn-link btn-float text-danger btn_recargar">
+					<i class="icon-reset text-danger"></i><span>Recargar</span>
+				</a>
+			</div>
+            <div class="d-flex justify-content-center">
+				<a href="#" class="btn btn-link btn-float text-danger btnMostrarChart">
+					<i class="icon-stats-dots text-danger"></i><span>Chart</span>
 				</a>
 			</div>
 		</div>
@@ -92,7 +97,7 @@
 			</form>
 		</div>
 	</div>
-    <button type="submit" class="btn btn-danger btnMostrarChart" style="display:none">Grafico<i class="icon-paperplane ml-2"></i></button>
+    <!-- <button type="submit" class="btn btn-danger btnMostrarChart" style="display:none">Grafico<i class="icon-paperplane ml-2"></i></button> -->
     <!-- /Form Section -->
 	<!-- Basic datatable -->
     <div id="contenedorTable">

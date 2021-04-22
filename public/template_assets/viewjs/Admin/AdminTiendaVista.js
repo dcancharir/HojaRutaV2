@@ -1,10 +1,6 @@
 let AdminTiendaVistaJS = function() {
-
-    //
-    // Setup module components
-    //
     let arrayFrecuenciaSemanal=[]
-    let _inicio=function() {
+    let inicio=function() {
         let url = basePath + "ListarTiendasJson";
         $.ajax({
             url: url,
@@ -126,7 +122,7 @@ let AdminTiendaVistaJS = function() {
         }
         return obj
     }
-    let _actions=function(){
+    let acciones=function(){
         $(document).on('change','.selectFrecuenciaSemanal',function(e){
             e.preventDefault()
             let tienda_id=$(this).data('id')
@@ -190,16 +186,11 @@ let AdminTiendaVistaJS = function() {
     }
      return {
         init: function() {
-            _inicio();
-            _actions();
+            inicio();
+            acciones();
         }
     }
 }();
-
-
-// // Initialize module
-// // ------------------------------
-
 document.addEventListener('DOMContentLoaded', function() {
     AdminTiendaVistaJS.init();
 });

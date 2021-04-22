@@ -68,4 +68,22 @@ class RoleController extends Controller
         }
         return response()->json(["data"=>$data,"mensaje"=>$mensaje,"respuesta"=>$respuesta]);
     }
+    public function EliminarRoleJSon(Request $request){
+        $mensaje="No se pudo eliminar el registro";
+        $respuesta =false;
+        try{
+            $role_id=$request["role_id"];
+            $role=Role::findOrFail($role_id);
+            $role->delete();
+            $mensaje="Registro eliminado";
+            $respuesta=true;
+        }catch(Exception $ex){
+
+        }catch (ModelNotFoundException $ex) {
+
+        }catch (QueryException $ex) {
+
+        }
+        return response()->json(["mensaje"=>$mensaje,"respuesta"=>$respuesta]);
+    }
 }

@@ -2,7 +2,7 @@ let TiendaVistaJS = function() {
     //
     // Setup module components
     //
-    let _inicio=function() {
+    let inicio=function() {
         let url = basePath + "ListarTiendasporSupervisorJson";
         $.ajax({
             url: url,
@@ -117,11 +117,21 @@ let TiendaVistaJS = function() {
         }
         return obj
     }
-    let _actions=function(){
+    let acciones=function(){
         $(document).on("click", ".btn_ventas", function() {
             tienda_id=$(this).data("id");
             // window.location.href = basePath + site;
             redirect("Venta/"+tienda_id);
+        });
+        $(document).on("click", ".btn_recargar", function() {
+            window.location.reload()
+        });
+        $(document).on("click", "#btn_pdf", function() {
+            window.open(basePath+ 'TiendaExportarPdf','_blank');
+
+        });
+        $(document).on("click", "#btn_excel", function() {
+            redirect("TiendaExportarExcel");
         });
     }
     //
@@ -130,8 +140,8 @@ let TiendaVistaJS = function() {
 
     return {
         init: function() {
-            _inicio();
-            _actions();
+            inicio();
+            acciones();
         }
     }
 }();

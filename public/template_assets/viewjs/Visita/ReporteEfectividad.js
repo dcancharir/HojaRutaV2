@@ -1,6 +1,6 @@
 let ReporteEfectividadJS=function(){
     let dataTable;
-    _inicio=function(){
+    let inicio=function(){
         let fechaHoy = moment(new Date()).format('YYYY-MM-DD');
         $("#fechaInicio").val(fechaHoy);
         $("#fechaFin").val(fechaHoy);
@@ -18,7 +18,7 @@ let ReporteEfectividadJS=function(){
             useCurrent: false,
         });
     }
-    let _componentes=function(){
+    let acciones=function(){
         $("#fechaInicio").on("dp.change", function (e) {
             $('#fechaFin').data("DateTimePicker").minDate(e.date);
         });
@@ -27,6 +27,9 @@ let ReporteEfectividadJS=function(){
         });
         $(document).on("click", ".btnMostrarChart", function() {
             $("#modalChart").modal("show");
+        });
+        $(document).on("click", ".btn_recargar", function() {
+            window.location.reload()
         });
         $(document).on("click",'#btnBuscar',function (e) {
             e.preventDefault()
@@ -72,7 +75,7 @@ let ReporteEfectividadJS=function(){
                             dias.reverse();
                             porcentajes.reverse();
                             //Llenar chart con data
-                            _chart(dias,porcentajes);
+                            cargarChart(dias,porcentajes);
                             botonChart.show();
 
                             //creacion de Datatable
@@ -123,7 +126,7 @@ let ReporteEfectividadJS=function(){
 
         })
     }
-    let _chart=function(dias,porcentajes){
+    let cargarChart=function(dias,porcentajes){
         $("#modalChart").on("shown.bs.modal", function () {
             if (typeof echarts == 'undefined') {
                 console.warn('Warning - echarts.min.js is not loaded.');
@@ -293,8 +296,8 @@ let ReporteEfectividadJS=function(){
     }
     return{
         init:function() {
-            _inicio()
-            _componentes()
+            inicio()
+            acciones()
         }
     }
 }()

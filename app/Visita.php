@@ -30,7 +30,10 @@ class Visita extends Model
         return $this->hasMany('App\Respuesta','visita_id');
     }
     public function detalle_ruta(){
-        return $this->hasOne('App\DetalleRuta','visita_id');
+        return $this->belongsTo('App\DetalleRuta','visita_id');
+    }
+    public function supervisor(){
+        return $this->belongsTo('App\Supervisor','supervisor_id');
     }
     public $timestamps = false;
 }

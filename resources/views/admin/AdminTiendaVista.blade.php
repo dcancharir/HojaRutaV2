@@ -4,7 +4,7 @@
 <!-- Page header -->
 <div class="page-header page-header-light">
 	<div class="page-header-content header-elements-md-inline">
-		<div class="page-title d-flex">
+		<div class="page-title d-flex" style="padding-top:0;padding-bottom:0;">
 			<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Tienda</h4>
 			<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 		</div>
