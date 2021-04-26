@@ -1,5 +1,6 @@
 let ReporteEfectividadJS=function(){
     let dataTable;
+    let chartimg;
     let inicio=function(){
         let fechaHoy = moment(new Date()).format('YYYY-MM-DD');
         $("#fechaInicio").val(fechaHoy);
@@ -76,6 +77,7 @@ let ReporteEfectividadJS=function(){
                             porcentajes.reverse();
                             //Llenar chart con data
                             cargarChart(dias,porcentajes);
+                            $("#modalChart").modal("show");
                             botonChart.show();
 
                             //creacion de Datatable
@@ -124,6 +126,102 @@ let ReporteEfectividadJS=function(){
                 }
             });
 
+        })
+        $(document).on('click','#btn_pdf',function (e) {
+            e.preventDefault();
+            let fechaInicio= $("#fechaInicio").val()+' 00:00:00';
+            let fechaFin= $("#fechaFin").val()+' 23:59:59';
+            let hidden_html=$("#chart").html()
+            let dataForm={
+                fechaInicio: fechaInicio,
+                fechaFin: fechaFin,
+                hidden_html:hidden_html
+            }
+            let url = basePath + "ReporteEfectividadExportarPdf";
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                // processData: false,
+                data:JSON.stringify(dataForm),
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                beforeSend: function () {
+                    block_general("body")
+                },
+                complete: function () {
+                    unblock("body");
+                },
+                success: function (response, status, xhr) {
+                    let filename = "";
+
+                    let disposition = xhr.getResponseHeader('Content-Disposition');
+
+                     if (disposition) {
+                        let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                        let matches = filenameRegex.exec(disposition);
+                        if (matches !== null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                    }
+
+                    let blob = new Blob([response]);
+                    let link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = filename;
+                    link.click();
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrow) {
+                    console.log("errorrrrrrrr");
+                }
+            })
+        })
+        $(document).on('click','#btn_excel',function (e) {
+            e.preventDefault();
+            let fechaInicio= $("#fechaInicio").val()+' 00:00:00';
+            let fechaFin= $("#fechaFin").val()+' 23:59:59';
+            let hidden_html=$("#chart").html()
+            let dataForm={
+                fechaInicio: fechaInicio,
+                fechaFin: fechaFin,
+                hidden_html:hidden_html
+            }
+            let url = basePath + "ReporteEfectividadExportarExcel";
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                // processData: false,
+                data:JSON.stringify(dataForm),
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                beforeSend: function () {
+                    block_general("body")
+                },
+                complete: function () {
+                    unblock("body");
+                },
+                success: function (response, status, xhr) {
+                    let filename = "";
+
+                    let disposition = xhr.getResponseHeader('Content-Disposition');
+
+                     if (disposition) {
+                        let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                        let matches = filenameRegex.exec(disposition);
+                        if (matches !== null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                    }
+
+                    let blob = new Blob([response]);
+                    let link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = filename;
+                    link.click();
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrow) {
+                    console.log("errorrrrrrrr");
+                }
+            })
         })
     }
     let cargarChart=function(dias,porcentajes){
@@ -239,6 +337,16 @@ let ReporteEfectividadJS=function(){
                    }
                ]
            });
+
+            // chartimg=src;
+            line_basic.on('finished', function () {
+                chartimg=document.getElementById('chart');
+                let src = line_basic.getDataURL({
+                    pixelRatio: 2,
+                    backgroundColor: '#fff'
+                });
+                chartimg.innerHTML=`<img src="${src}">`
+            });
         });
     }
     let columnasDatatable = function (data){

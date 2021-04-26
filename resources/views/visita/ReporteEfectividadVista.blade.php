@@ -131,6 +131,9 @@
 		</div>
 	</div>
 </div>
+<div id="chart">
+
+</div>
 <!-- End Modal -->
 @stop
 

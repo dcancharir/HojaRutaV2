@@ -59,6 +59,8 @@ Route::group(["middleware"=>'permiso:supervisor'],function(){
     Route::post('RutaDiariaJson','RutaController@listarRutaDiaporUsuarioJson');
     Route::post('RutaListarporUsuarioJson','RutaController@listarRutasporUSuarioJson');
     Route::post('ReporteEfectividadJson','RutaController@ReporteEfectividadJson');
+    Route::post('ReporteEfectividadExportarPdf','RutaController@ReporteEfectividadExportarPdf');
+    Route::post('ReporteEfectividadExportarExcel','RutaController@ReporteEfectividadExportarExcel');
 
     //Visitas, Preguntas y Opciones a responder
     Route::get('Visita','VisitaController@VisitaVista')->name('Visita');
